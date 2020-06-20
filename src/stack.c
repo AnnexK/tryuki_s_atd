@@ -1,4 +1,6 @@
 #include "stack.h"
+#include "stack_impl.h"
+#include <stdlib.h>
 
 int push(stack *s, const void *data)
 {

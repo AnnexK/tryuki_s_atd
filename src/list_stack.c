@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
-#include "stack.h"
+#include "stack_impl.h"
 #include "list_stack.h"
 
 struct _stacknode

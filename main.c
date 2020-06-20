@@ -4,8 +4,6 @@
 #include <stddef.h>
 #include <stdio.h>
 
-stack (*make_stack)(size_t) = NULL;
-
 int main(void)
 {
 	stack *S1 = make_array_stack(sizeof(unsigned int), 16);

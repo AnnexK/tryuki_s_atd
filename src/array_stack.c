@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "stack_impl.h"
 #include "array_stack.h"
 #include <stdlib.h>
 #include <string.h>
