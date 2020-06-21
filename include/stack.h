@@ -7,6 +7,8 @@
 
 typedef struct _stack stack;
 
+/* АТД Стек                                   *
+ * Конструктор стека определяется реализацией */
 int push (stack *, const void *);
 int pop  (stack *, void *);
 int peek (stack *, void *);

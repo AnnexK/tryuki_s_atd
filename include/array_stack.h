@@ -4,6 +4,7 @@
 #include "stack.h"
 #include <stddef.h>
 
+// Конструктор
 stack *make_array_stack(size_t esize, size_t size);
 
 #endif

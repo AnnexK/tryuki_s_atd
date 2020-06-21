@@ -7,12 +7,12 @@
 struct _stacknode
 {
     struct _stacknode *next;
-    char data[];
+    char data[]; // Данные узла
 };
 
 struct _liststack
 {
-    size_t esize;
+    size_t esize; // Размер одного элемента данных узла
     struct _stacknode *head;
 };
 
@@ -20,7 +20,7 @@ int _seamliststkpush(void *s, const void *data)
 {
     struct _liststack *stk = s;
 
-    struct _stacknode *new = malloc(offsetof(struct _stacknode, next)+stk->esize);
+    struct _stacknode *new = malloc(offsetof(struct _stacknode, next)+stk->esize); // Место на указатель на следующий узел+Место на данные
     if (!new)
         return NO_MEMORY;
 
@@ -33,7 +33,7 @@ int _seamliststkpush(void *s, const void *data)
 
 int _seamliststkpeek(const void *s, void *data)
 {
-    struct _liststack *stk = s;
+    const struct _liststack *stk = s;
     if (!stk->head)
         return EMPTY;
 
@@ -74,14 +74,18 @@ void _seamliststkdest(void *s)
     }
 }
 
+static struct _stackvft _seamliststkvft = {
+    .push = _seamliststkpush,
+    .pop = _seamliststkpop,
+    .peek = _seamliststkpeek,
+    .empty = _seamliststkempty,
+    .dest = _seamliststkdest
+};
+
 stack *make_list_stack(size_t esize)
 {
     stack *ret = malloc(offsetof(stack, _stack)+sizeof(struct _liststack));
-    ret->dest = _seamliststkdest;
-    ret->empty = _seamliststkempty;
-    ret->peek = _seamliststkpeek;
-    ret->pop = _seamliststkpop;
-    ret->push = _seamliststkpush;
+    ret->vftptr = &_seamliststkvft;
 
     struct _liststack *stk = (struct _liststack *)(ret->_stack);
     stk->esize = esize;

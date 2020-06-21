@@ -4,6 +4,7 @@
 #include "stack.h"
 #include <stddef.h>
 
+// Конструктор
 stack *make_list_stack(size_t);
 
 #endif // SEAMLESS_STACK_LIST
